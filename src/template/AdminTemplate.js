@@ -47,6 +47,7 @@ function AdminTemplate() {
                 backgroundColor: "red",
                 padding: "5px",
                 color: "white",
+                borderRadius: "10px",
               }}
               onClick={() => dispatch(userSlice.actions.logout())}
             >
