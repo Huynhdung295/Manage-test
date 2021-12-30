@@ -2,11 +2,12 @@ import React from "react";
 import { Container, Navbar, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { userSlice } from "../redux/reduce/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AdminRouter from "../router/AdminRouter";
 import { AdminRoute } from "../router/ListRoute";
 import "./index.css";
 function AdminTemplate() {
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const url = window.location.href;
   return (
@@ -37,8 +38,16 @@ function AdminTemplate() {
             ))}
           </ul>
           <Navbar.Collapse className="justify-content-end">
+            <Navbar.Text style={{ marginRight: "10px" }}>
+              Hello, {user?.name}
+            </Navbar.Text>
             <Navbar.Text
-              style={{ cursor: "pointer" }}
+              style={{
+                cursor: "pointer",
+                backgroundColor: "red",
+                padding: "5px",
+                color: "white",
+              }}
               onClick={() => dispatch(userSlice.actions.logout())}
             >
               Logout
