@@ -6,8 +6,8 @@ function LoginPage() {
   const { setParams, username, password, login } = LoginHook();
   return (
     <div className="d-flex justify-content-center">
-      <Card style={{width: '380px'}} className="text-center mb-0">
-        <Card.Header style={{fontSize: '22px'}}>Login</Card.Header>
+      <Card style={{ width: "380px" }} className="text-center mb-0">
+        <Card.Header style={{ fontSize: "22px" }}>Login</Card.Header>
         <Card.Body>
           <form
             onSubmit={(e) => {
@@ -18,6 +18,7 @@ function LoginPage() {
             <div>
               <Form.Control
                 className="mb-2"
+                minLength="3"
                 placeholder="Username"
                 type="text"
                 name="userName"
@@ -27,6 +28,7 @@ function LoginPage() {
             </div>
             <div>
               <Form.Control
+                minLength="3"
                 className="mb-2"
                 placeholder="Password"
                 type="password"
