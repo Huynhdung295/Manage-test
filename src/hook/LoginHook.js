@@ -6,7 +6,7 @@ function LoginHook() {
   const message = useSelector((state) => state.message);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-console.log(message);
+
   const setParams = (e) => {
     if (e?.target?.name === "userName") {
       setUsername(e.target.value);
@@ -34,17 +34,19 @@ console.log(message);
         };
         if (res?.statusCode === 200) {
           localStorage.setItem("user", JSON.stringify(dataUserLogin));
-          window.location.reload();
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
           if (typeUser === "QuanTri") {
-            alert("Bạn đang đăng nhập với quyền quản trị");
+            toast.success(message?.adminLoginSuscess);
           }
           if (typeUser !== "QuanTri") {
-            alert("Bạn đang đăng nhập với quyền người dùng");
+            toast.success(message?.userLoginSuscess);
           }
         }
       })
       .catch((err) => {
-        toast.error('hello');
+        toast.error(message?.loginFailed);
       });
   };
   return { setParams, username, password, login };

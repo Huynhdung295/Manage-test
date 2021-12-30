@@ -1,10 +1,12 @@
-import './App.css';
-import RouterMain from './router';
+import { ToastContainer } from "react-toastify";
+import "./App.css";
+import RouterMain from "./router";
 
 function App() {
   return (
     <div>
-    <RouterMain />
+      <RouterMain />
+      <ToastContainer />
     </div>
   );
 }

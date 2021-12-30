@@ -11,11 +11,18 @@ export const userSlice = createSlice({
     token: initUser ? JSON.parse(initUser).token : "",
   },
   reducers: {
-    test: (state, action) => {
-      state.test = action.payload;
+    logout: (state, action) => {
+      // state.typeUser = "";
+      // state.name = "";
+      // state.email = "";
+      // state.phone = "";
+      // state.groupId = "";
+      // state.token = "";
+      localStorage.clear();
+      window.location.reload();
     },
   },
 });
 
-export const { loginManage } = userSlice.actions;
+export const { logout } = userSlice.actions;
 export default userSlice.reducer;

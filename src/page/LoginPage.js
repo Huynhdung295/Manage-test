@@ -1,34 +1,50 @@
 import React from "react";
 import LoginHook from "../hook/LoginHook";
+import { Button, Card, Form } from "react-bootstrap";
 
 function LoginPage() {
   const { setParams, username, password, login } = LoginHook();
   return (
-    <form>
-      <div>
-        <label>User name</label>
-        <input
-          type="text"
-          name="userName"
-          value={username}
-          onChange={setParams}
-        />
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={setParams}
-        />
-      </div>
-      <div>
-        <button type="button" onClick={login}>
-          Login
-        </button>
-      </div>
-    </form>
+    <div className="d-flex justify-content-center">
+      <Card style={{width: '380px'}} className="text-center mb-0">
+        <Card.Header style={{fontSize: '22px'}}>Login</Card.Header>
+        <Card.Body>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              login();
+            }}
+          >
+            <div>
+              <Form.Control
+                className="mb-2"
+                placeholder="Username"
+                type="text"
+                name="userName"
+                value={username}
+                onChange={setParams}
+              />
+            </div>
+            <div>
+              <Form.Control
+                className="mb-2"
+                placeholder="Password"
+                type="password"
+                name="password"
+                value={password}
+                onChange={setParams}
+              />
+            </div>
+            <div>
+              <Button type="submit" variant="outline-primary">
+                Login
+              </Button>
+            </div>
+          </form>
+        </Card.Body>
+        <Card.Footer className="text-muted"></Card.Footer>
+      </Card>
+    </div>
   );
 }
 

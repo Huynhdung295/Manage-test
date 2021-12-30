@@ -1,7 +1,6 @@
 /* eslint-disable default-case */
 import { toast } from "react-toastify";
 
-
 class ApiError extends Error {
   constructor(message, error, type) {
     super(message);
@@ -9,13 +8,14 @@ class ApiError extends Error {
     this.type = type;
   }
 }
+
 const API_ERROR = 2;
 function getAuthHeader() {
   const tokenCyber =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQgNjYiLCJIZXRIYW5TdHJpbmciOiIzMC8wMy8yMDIyIiwiSGV0SGFuVGltZSI6IjE2NDg1OTg0MDAwMDAiLCJuYmYiOjE2MTc1NTU2MDAsImV4cCI6MTY0ODc0NjAwMH0.tGlHI6jAW8M3mO7Dr-d_T9wEx2Vg5Tnw5EKxqahO-6E";
-  const token = localStorage.getItem("accessToken");
+  const token = JSON.parse(localStorage.getItem("user"))?.token;
   return {
-    Authorization: `Bearer ${encodeURIComponent(token)}`,
+    Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
     TokenCybersoft: tokenCyber,
     Accept: "application/json",
