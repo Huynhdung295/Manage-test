@@ -6,6 +6,7 @@ import {
   addUserFailedReducer,
   addUserSuscessReducer,
 } from "../redux/reduce/listSlice";
+import { dataCreateForm } from "../settings/CreateUserPage";
 function CreateUserPage() {
   const dispatch = useDispatch();
   const [dataUser, setDataUser] = React.useState({});
@@ -33,7 +34,7 @@ function CreateUserPage() {
       .catch((err) => {
         dispatch(
           addUserFailedReducer({
-            content: err,
+            content: err?.content,
             message: "Dữ liệu không hợp lệ!",
           })
         );
@@ -48,63 +49,18 @@ function CreateUserPage() {
           handleCreateUser();
         }}
       >
-        <Form.Group className="mb-3">
-          <Form.Label>Account</Form.Label>
-          <Form.Control
-            value={dataUser?.account || ""}
-            minLength="6"
-            onChange={(e) => handleChange(`account`, e?.target?.value)}
-            type="text"
-            placeholder="Account..."
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            minLength="6"
-            onChange={(e) => handleChange(`name`, e?.target?.value)}
-            type="text"
-            placeholder="Name..."
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            minLength="6"
-            onChange={(e) => handleChange(`password`, e?.target?.value)}
-            type="text"
-            placeholder="Password..."
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            minLength="6"
-            onChange={(e) => handleChange(`email`, e?.target?.value)}
-            type="email"
-            placeholder="Email..."
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Phone</Form.Label>
-          <Form.Control
-            minLength="6"
-            onChange={(e) => handleChange(`phone`, e?.target?.value)}
-            pattern="^[0-9]*$"
-            type="text"
-            placeholder="Phone..."
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>ID Group</Form.Label>
-          <Form.Control
-            minLength="4"
-            maxLength="4"
-            onChange={(e) => handleChange(`idGroup`, e?.target?.value)}
-            type="text"
-            placeholder="ID Group..."
-          />
-        </Form.Group>
+        {dataCreateForm.map((item, index) => (
+          <Form.Group key={index} className="mb-3">
+            <Form.Label>{item.label}</Form.Label>
+            <Form.Control
+              minLength={item.min}
+              onChange={(e) => handleChange(item.attr, e?.target?.value)}
+              type={item.type}
+              pattern={item.pattern === "" ? null : item.pattern}
+              placeholder={item.placeholder}
+            />
+          </Form.Group>
+        ))}
         <Form.Group className="mb-3">
           <Form.Label>Type</Form.Label>
           <Form.Select onChange={(e) => handleChange(`type`, e?.target?.value)}>
