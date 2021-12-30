@@ -26,6 +26,7 @@ function ListUserPage() {
   const [page, setPage] = React.useState(1);
   const { newArray } = PaginationHook(dataList, sizePage);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [isShow, setIsShow] = React.useState(false);
   const data = {
     maNhom: idGroup,
     tuKhoa: keyword,
