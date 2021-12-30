@@ -6,6 +6,7 @@
 body{
   background: #fff;
   font-family: 'Roboto', sans-serif;
+  overflow: hidden;
 }
 ul{
   list-style: none;
