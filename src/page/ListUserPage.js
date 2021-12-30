@@ -67,12 +67,12 @@ function ListUserPage() {
     getListUser(data)
       .then((res) => {
         setDataList(res?.content);
-        setIsLoading(false)
+        setIsLoading(false);
       })
       .catch((err) => {
         setDataList([]);
         toast.error("Mã nhóm không hợp lệ!");
-        setIsLoading(false)
+        setIsLoading(false);
       });
   };
   return (
@@ -127,7 +127,18 @@ function ListUserPage() {
       </Row>
 
       {!isLoading ? (
-        <Table striped bordered hover>
+        <Table
+          className="d-block"
+          style={{
+            maxWidth: "fit-content",
+            margin: "0 auto",
+            overflowX: "auto",
+            whiteSpace: "nowrap",
+          }}
+          striped
+          bordered
+          hover
+        >
           <thead>
             <tr>
               <th>#</th>
