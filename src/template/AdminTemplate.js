@@ -17,6 +17,7 @@ function AdminTemplate() {
           zIndex: "99",
           backgroundColor: "#fff",
           borderBottom: "2px solid",
+          maxWidth: "100vw",
         }}
       >
         <Container fluid>

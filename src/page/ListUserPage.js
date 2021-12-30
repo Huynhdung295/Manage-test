@@ -127,43 +127,41 @@ function ListUserPage() {
       </Row>
 
       {!isLoading ? (
-        <Table
-          className="d-block"
-          style={{
-            maxWidth: "fit-content",
-            margin: "0 auto",
-            overflowX: "auto",
-            whiteSpace: "nowrap",
-          }}
-          striped
-          bordered
-          hover
-        >
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Account</th>
-              <th>Password</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            {newArray[page - 1]?.map((item, index) => (
-              <tr key={index}>
-                <td>{index + 1 + (page - 1) * 10}</td>
-                <td>{item.hoTen}</td>
-                <td>{item.taiKhoan}</td>
-                <td>{item.matKhau}</td>
-                <td>{item.email}</td>
-                <td>{item.soDT}</td>
-                <td>{item.maLoaiNguoiDung}</td>
+        <div style={{maxWidth: '100%', overflowX: 'auto'}}>
+          <Table
+            style={{
+          
+            }}
+            striped
+            bordered
+            hover
+          >
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Account</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Type</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {newArray[page - 1]?.map((item, index) => (
+                <tr key={index}>
+                  <td>{index + 1 + (page - 1) * 10}</td>
+                  <td>{item.hoTen}</td>
+                  <td>{item.taiKhoan}</td>
+                  <td>{item.matKhau}</td>
+                  <td>{item.email}</td>
+                  <td>{item.soDT}</td>
+                  <td>{item.maLoaiNguoiDung}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
       ) : (
         <Spinner animation="border" variant="primary" />
       )}
