@@ -1,14 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import {
-  Button,
-  Col,
-  Form,
-  Pagination,
-  Row,
-  Spinner,
-  Table,
-} from "react-bootstrap";
+import { Button, Col, Form, Row, Spinner, Table } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { getListUser } from "../api/api";
 import PaginationHook from "../hook/PaginationHook";
@@ -22,11 +14,17 @@ function ListUserPage() {
   const [idGroup, setIdGroup] = React.useState("");
   const [keyword, setKeyword] = React.useState("");
   const [dataList, setDataList] = React.useState([]);
-  const [sizePage, setSizePage] = React.useState(30);
-  const [page, setPage] = React.useState(1);
-  const { newArray } = PaginationHook(dataList, sizePage);
+
+  const {
+    newArray,
+    controlPagination,
+    pagination,
+    page,
+    sizePage,
+    setSizePage,
+    setPage,
+  } = PaginationHook(dataList);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [isShow, setIsShow] = React.useState(false);
   const data = {
     maNhom: idGroup,
     tuKhoa: keyword,
@@ -51,18 +49,6 @@ function ListUserPage() {
     };
   }, []);
 
-  let items = [];
-  for (let number = 1; number <= newArray?.length; number++) {
-    items.push(
-      <Pagination.Item
-        key={number}
-        onClick={() => setPage(number)}
-        active={number === page}
-      >
-        {number}
-      </Pagination.Item>
-    );
-  }
   const handleSubmit = () => {
     setIsLoading(true);
     getListUser(data)
@@ -107,36 +93,13 @@ function ListUserPage() {
         </Row>
       </form>
       <Row style={{ alignItems: "center", height: "70px" }}>
-        <Col style={{ maxWidth: "100px" }}>
-          <Form.Select
-            onChange={(e) => {
-              setSizePage(e?.target?.value);
-              setPage(1);
-            }}
-          >
-            <option value="30">30</option>
-            <option value="50">50</option>
-            <option value="70">70</option>
-            <option value="100">100</option>
-          </Form.Select>
-        </Col>
-        <Col style={{ maxWidth: "calc(100% - 100px)" }}>
-          <Pagination style={{ overflow: "auto" }} className="mt-2 mb-2">
-            {items}
-          </Pagination>
-        </Col>
+        <Col style={{ maxWidth: "100px" }}>{controlPagination}</Col>
+        <Col style={{ maxWidth: "calc(100% - 100px)" }}>{pagination}</Col>
       </Row>
 
       {!isLoading ? (
-        <div style={{maxWidth: '100%', overflowX: 'auto'}}>
-          <Table
-            style={{
-          
-            }}
-            striped
-            bordered
-            hover
-          >
+        <div style={{ maxWidth: "100%", overflowX: "auto" }}>
+          <Table style={{}} striped bordered hover>
             <thead>
               <tr>
                 <th>#</th>
@@ -151,7 +114,7 @@ function ListUserPage() {
             <tbody>
               {newArray[page - 1]?.map((item, index) => (
                 <tr key={index}>
-                  <td>{index + 1 + (page - 1) * 10}</td>
+                  <td>{index + 1 + (page - 1) * sizePage}</td>
                   <td>{item.hoTen}</td>
                   <td>{item.taiKhoan}</td>
                   <td>{item.matKhau}</td>
