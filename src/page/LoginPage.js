@@ -1,12 +1,14 @@
 import React from "react";
 import LoginHook from "../hook/LoginHook";
 import { Button, Card, Form } from "react-bootstrap";
-
 function LoginPage() {
   const { setParams, username, password, login } = LoginHook();
   return (
     <div className="d-flex justify-content-center">
-      <Card style={{ width: "380px", position: 'fixed', top:'20%' }} className="text-center mb-0">
+      <Card
+        style={{ width: "380px", position: "fixed", top: "20%" }}
+        className="text-center mb-0"
+      >
         <Card.Header style={{ fontSize: "22px" }}>Login</Card.Header>
         <Card.Body>
           <form
