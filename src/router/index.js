@@ -7,28 +7,21 @@ import UserTemplate from "../template/UserTemplate";
 import NotFound from "../page/NotFound";
 function RouterMain() {
   const dataUser = useSelector((state) => state.user);
+  const condition = (component) =>
+    // eslint-disable-next-line no-unused-expressions
+    dataUser?.typeUser === "QuanTri" ? (
+      <AdminTemplate />
+    ) : dataUser?.typeUser === "KhachHang" ? (
+      <UserTemplate />
+    ) : (
+      component
+    );
+
   return (
     <Router>
       <Switch>
-        <Route
-          exact
-          path="/dangnhap"
-          render={() =>
-            dataUser?.typeUser === "" ? <LoginPage /> : <NotFound />
-          }
-        />
-        <Route
-          path="/"
-          render={() =>
-            dataUser?.typeUser === "QuanTri" ? (
-              <AdminTemplate />
-            ) : dataUser?.typeUser === "KhachHang" ? (
-              <UserTemplate />
-            ) : (
-              <NotFound />
-            )
-          }
-        />
+        <Route exact path="/dangnhap" render={() => condition(<LoginPage />)} />
+        <Route path="/" render={() => condition(<NotFound />)} />
       </Switch>
     </Router>
   );
