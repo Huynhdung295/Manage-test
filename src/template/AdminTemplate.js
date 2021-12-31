@@ -9,7 +9,7 @@ import "./index.css";
 function AdminTemplate() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const url = window.location.href;
+  const url = window.location.pathname;
   return (
     <>
       <Navbar
@@ -30,7 +30,7 @@ function AdminTemplate() {
             </li>
             {AdminRoute.map((route, index) => (
               <li
-                className={`${url?.includes(route.path) ? "link__active" : ""}`}
+                className={`${url === route.path ? "link__active" : ""}`}
                 key={index}
               >
                 <Link to={route.path}>{route.label}</Link>

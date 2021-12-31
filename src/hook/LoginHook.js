@@ -35,7 +35,7 @@ function LoginHook() {
         if (res?.statusCode === 200) {
           localStorage.setItem("user", JSON.stringify(dataUserLogin));
           setTimeout(() => {
-            window.location.reload();
+            window.location.assign("/");
           }, 1500);
           if (typeUser === "QuanTri") {
             toast.success(message?.adminLoginSuscess);

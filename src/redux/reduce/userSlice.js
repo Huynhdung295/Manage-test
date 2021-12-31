@@ -19,7 +19,7 @@ export const userSlice = createSlice({
       // state.groupId = "";
       // state.token = "";
       localStorage.clear();
-      window.location.reload();
+      window.location.assign("/dangnhap");
     },
   },
 });

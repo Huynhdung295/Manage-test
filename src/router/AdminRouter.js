@@ -2,6 +2,7 @@ import React from "react";
 import { AdminRoute } from "./ListRoute";
 import { Switch, Route } from "react-router-dom";
 import InfomartionUser from "../page/InfomartionUser";
+import NotFound from "../page/NotFound";
 function AdminRouter() {
   return (
     <div>
@@ -14,7 +15,8 @@ function AdminRouter() {
             render={() => route.component}
           />
         ))}
-        <Route exact path="/" render={() => <InfomartionUser />} />
+        <Route path="/" exact render={() => <InfomartionUser />} />
+        <Route path="" component={() => <NotFound />} />
       </Switch>
     </div>
   );
