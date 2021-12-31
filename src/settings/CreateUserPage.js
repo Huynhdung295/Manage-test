@@ -37,6 +37,7 @@ export const dataCreateForm = [
     placeholder: "Phone...",
     label: "Phone",
     pattern: "^[0-9]*$",
+    min: "8",
   },
   {
     type: "text",

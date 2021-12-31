@@ -3,7 +3,6 @@ import "../style/NotFound.css";
 import { useSelector } from "react-redux";
 function NotFound() {
   const dataUser = useSelector((state) => state.user);
-  console.log(dataUser);
   return (
     <div>
       <section className="page_404">
